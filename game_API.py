@@ -38,29 +38,29 @@ class Player:
         self.scissors = jsn["Scissors"]
 
 class Monster:
-    def __init__(self): # only used to return invalid monster
-        self.name = "No Monster"
-        self.stance = "Invalid Stance"
-        self.health = 0
-        self.respawn_rate = 0
-        self.respawn_counter = 0
-        self.location = 0
-        self.dead = False
-        self.death_effects = 0
-        self.attack = 0
-        self.base_health = 0
-
     def __init__(self, jsn):
-        self.name = jsn["Name"]
-        self.stance = jsn["Stance"]
-        self.health = jsn["Health"]
-        self.respawn_rate = 7 - jsn["Speed"]
-        self.respawn_counter = 0
-        self.location = jsn["Location"]
-        self.dead = False
-        self.death_effects = DeathEffects(jsn["Death Effects"])
-        self.attack = jsn["Attack"]
-        self.base_health = self.health
+        if jsn is None:
+            self.name = "No Monster"
+            self.stance = "Invalid Stance"
+            self.health = 0
+            self.respawn_rate = 0
+            self.respawn_counter = 0
+            self.location = 0
+            self.dead = False
+            self.death_effects = 0
+            self.attack = 0
+            self.base_health = 0
+        else:
+            self.name = jsn["Name"]
+            self.stance = jsn["Stance"]
+            self.health = jsn["Health"]
+            self.respawn_rate = 7 - jsn["Speed"]
+            self.respawn_counter = 0
+            self.location = jsn["Location"]
+            self.dead = False
+            self.death_effects = DeathEffects(jsn["Death Effects"])
+            self.attack = jsn["Attack"]
+            self.base_health = self.health
 
     def update(self, jsn):
         self.name = jsn["Name"]
@@ -203,7 +203,7 @@ class Game:
         for monster in self.monsters:
             if monster.location == node:
                 return monster
-        return Monster()
+        return Monster(None)
 
     def get_monster_valid_function(self, search_mode):
         if search_mode == 0:
