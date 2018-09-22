@@ -250,7 +250,7 @@ class Game:
         while not done:
             n = to_explore.pop(0)
 
-            if min_dist != -1 and distances[n] > min_dist:
+            if min_dist != -1 and distances[n] > min_dist or len(to_explore) == 0:
                 return ret
 
             if valid_monsters[n] is not None:
