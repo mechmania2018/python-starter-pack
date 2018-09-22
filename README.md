@@ -17,7 +17,14 @@ Here's all the code you need to get started with making a bot for Mechmania in P
 3. Within Docker, run `npm install -g mechmania`.  This gets the `mm` command line tools, which are used to test and submit bots for the tournament.
 
 # Mac Pre-Setup
-TODO: write this
+
+1. First, install Node. To do this, go [here](https://nodejs.org/en/download/) and download the macOS Installer.
+
+2. Next, install Docker for Mac.
+   * You can find the installer [here](https://store.docker.com/editions/community/docker-ce-desktop-mac).
+   * Open the installer and follow the instructions to install Docker
+
+3. Run `npm install -g mechmania`.  This gets the `mm` command line tools, which are used to test and submit bots for the tournament.
 
 # Setup
 
@@ -48,7 +55,7 @@ Within `Game_API`, three other classes are defined -- `Player`, `Monster`, and `
 - `movement_counter` : `int` -- the movement counter will go down by 1 each turn.  Once a player's movement counter is equal to their speed, they will move to their destination.
 - `location` : `int`
 - `destination` : `int` (Note: on the first turn, the player's destination will be -1, since the player hasn't yet set a destination)
-- `dead` : `bool` (This should always be `True`, since once a player dies, the game is over)
+- `dead` : `bool` (This should always be `False`, since once a player dies, the game is over)
 - `rock` : `int` -- the player's Rock attack stat
 - `paper` : `int` -- the player's Paper attack stat
 - `scissors` : `int` -- the player's Scissors attack stat
@@ -123,3 +130,4 @@ Returns a list of `Monster` structs for all monsters nearest to `node` (includin
 
 `nearest_monsters_with_name(node, name, search_type)`
 Same as `nearest_monsters`, but only considers monsters with name `name`.
+(Note: since, on our map, there is only one monster with any given name, the list returned by this method will contain a maximum of 1 monster)
