@@ -229,9 +229,14 @@ class Game:
 
     def nearest_monsters_helper(self, node, monster_valid):
         valid_monsters = [None for n in self.nodes]
+        found_valid = False
         for mon in self.monsters:
             if (monster_valid(mon)):
                 valid_monsters[mon.location] = mon
+                found_valid = True
+
+        if not found_valid:
+            return []
 
         explored = []
         to_explore = [node]
